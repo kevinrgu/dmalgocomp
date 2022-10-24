@@ -17,7 +17,10 @@ class User:
 # Takes in two user objects and outputs a float denoting compatibility
 def compute_score(user1, user2):
     # YOUR CODE HERE
-    return 0
+    mult = user2.gender in user1.preferences and user1.gender in user2.preferences
+    diff = sum([1 if a == b else 0 for a, b in zip(user1.responses, user2.responses)])
+    similar = 1 - diff / len(user1.responses)
+    return mult * similar
 
 
 if __name__ == '__main__':
